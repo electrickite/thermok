@@ -232,7 +232,12 @@ void readTemp() {
     return;
   }
 
+  Serial.print(correctedTemp);
+  Serial.print(" ");
+  Serial.print((double) offset);
+  Serial.print(" ");
   temp = correctedTemp + (double) offset;
+  Serial.println(temp);
 }
 
 double ctof(double c) {
@@ -287,7 +292,7 @@ void modeSetCal(bool change) {
     } else {
       offset = offset + 1;
     }
-    EEPROM.put(CAL_ADDR, (uint8_t) offset);
+    EEPROM.put(CAL_ADDR, (int8_t) offset);
   }
   displayMode();
 }
